@@ -37,7 +37,8 @@ Kitchen editor (admin.html) ──GitHub API──▶ data/site.json + images/  
 - The **eye** button in the editor opens `index.html?preview`, which shows the unpublished draft.
 - Without a key, the editor runs in **demo mode**: changes stay on that phone, and you can download `site.json` as a backup.
 - Each date stops taking orders automatically after its deadline (`cutoff`), and past dates disappear from the site.
-- The access key is stored only on Vasthie's phone. It can only change this one repository, and it can be revoked on GitHub at any time.
+- The access key is stored only on the phones that signed in. It can only change this one repository, and it can be revoked on GitHub at any time.
+- **Kitchen password:** once signed in with the key, *Réglages → Mot de passe de la cuisine* stores the key in `data/kitchen-key.json`, encrypted with that password (PBKDF2-SHA256, 600,000 rounds, AES-GCM, in the browser). Other phones then sign in with the password alone. The encrypted file is public, so use a long password (3–4 words). If the GitHub key expires, sign in with a new key and set the password again.
 
 ## Files
 

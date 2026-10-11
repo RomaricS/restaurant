@@ -3,7 +3,7 @@
     "name": "Chez Shashou",
     "tagline": "Cuisine haïtienne maison par Vasthie",
     "headline": "Manje lakay, fait avec amour.",
-    "intro": "Les assiettes du week-end de la cuisine de Vasthie : griot, diri djon djon, pikliz et bien plus. Commandez à l'avance, puis venez chercher votre plat tout chaud.",
+    "intro": "Les assiettes du week-end de la cuisine de Vasthie, à Bezons : griot, diri djon djon, pikliz et bien plus. Commandez à l'avance, puis venez chercher votre plat tout chaud.",
     "currency": "EUR",
     "locale": "fr-FR"
   },
@@ -11,11 +11,11 @@
     "title": "Bonjou, moi c'est Vasthie",
     "text": "La plupart des gens m'appellent Shashou. J'ai grandi en Haïti en regardant ma mère et ma grand-mère cuisiner. Chez nous, la cuisine était le cœur de la maison, et le dimanche, la table était toujours pleine.\n\nJe cuisine encore comme ça aujourd'hui : en petites quantités, avec de l'épis frais, et seulement les week-ends annoncés ici. Chaque assiette est préparée sur commande, alors commandez tôt. Quand il n'y en a plus, il n'y en a plus !",
     "photo": "images/dishes/about-spread.jpg",
-    "area": "Retrait dans le quartier. L'adresse exacte vous est envoyée à la confirmation de la commande."
+    "area": "Retrait à Bezons (95). L'adresse exacte vous est envoyée à la confirmation de la commande."
   },
   "contact": {
-    "whatsapp": "+33600000000",
-    "phone": "+33600000000",
+    "whatsapp": "+33698622445",
+    "phone": "+33698622445",
     "email": "",
     "instagram": "chezshashou",
     "facebook": "",
@@ -37,7 +37,7 @@
       {
         "id": "delivery",
         "label": "Livraison locale",
-        "note": "Dans un rayon de 8 km",
+        "note": "Bezons et alentours, dans un rayon de 8 km",
         "fee": 5,
         "needsAddress": true
       }

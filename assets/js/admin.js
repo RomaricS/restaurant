@@ -471,6 +471,7 @@ function settingsTab() {
   <section class="group"><h2>Publication</h2><div class="list">
     <div class="item">${icon('github')}<div class="grow"><b>${connected() ? `${esc(repo.owner)}/${esc(repo.repo)}` : 'Non connecté (mode démo)'}</b><small>${connected() ? `Branche ${esc(repo.branch)}` : 'Les modifications restent sur ce téléphone jusqu\'à la connexion'}</small></div>
       <button class="btn btn-ghost btn-sm" data-act="${connected() ? 'disconnect' : 'connect'}">${connected() ? 'Se déconnecter' : 'Se connecter'}</button></div>
+    ${connected() ? `<button class="item tap" data-act="password">${icon('lock')}<div class="grow"><b>Mot de passe de la cuisine</b><small>Pour se connecter sur un autre téléphone sans la clé GitHub</small></div>${icon('next', 'chev')}</button>` : ''}
     <button class="item tap" data-act="export">${icon('download')}<div class="grow"><b>Télécharger une sauvegarde</b><small>Enregistre site.json sur votre téléphone</small></div>${icon('next', 'chev')}</button>
     <label class="item tap">${icon('upload')}<div class="grow"><b>Restaurer une sauvegarde</b><small>Charger un fichier site.json</small></div><input type="file" accept="application/json,.json" data-import hidden>${icon('next', 'chev')}</label>
     <button class="item tap" data-act="discard">${icon('refresh')}<div class="grow"><b>Annuler les modifications non publiées</b><small>Revenir à la version en ligne</small></div>${icon('next', 'chev')}</button>
@@ -548,22 +549,108 @@ function exportJSON() {
 }
 
 /* ======================= CONNECT ======================= */
+/* The GitHub key can be stored in the repo encrypted with a password (data/kitchen-key.json),
+   so signing in on a new phone only needs that password. PBKDF2 + AES-GCM, all in the browser. */
+const KEY_FILE = 'data/kitchen-key.json';
+const KDF_ITER = 600000;
+const bytesToB64 = (u8) => btoa(String.fromCharCode(...u8));
+const b64ToBytes = (b64) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+async function passwordKey(password, salt, iter) {
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+async function sealRepo(password, r) {
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await passwordKey(password, salt, KDF_ITER);
+  const plain = new TextEncoder().encode(JSON.stringify({ owner: r.owner, repo: r.repo, branch: r.branch, token: r.token }));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, plain));
+  return { v: 1, kdf: 'PBKDF2-SHA256', iter: KDF_ITER, salt: bytesToB64(salt), iv: bytesToB64(iv), data: bytesToB64(ct) };
+}
+async function openRepo(password, box) {
+  const key = await passwordKey(password, b64ToBytes(box.salt), box.iter);
+  const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64ToBytes(box.iv) }, key, b64ToBytes(box.data));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+async function loadKeyBox() {
+  try {
+    const res = await fetch(`${KEY_FILE}?t=${Date.now()}`, { cache: 'no-store' });
+    return res.ok ? await res.json() : null;
+  } catch { return null; }
+}
+
+/* Checks a candidate key against GitHub, then opens the kitchen. Returns an error message or ''. */
+async function signIn(candidate) {
+  repo = candidate;
+  try {
+    const r = await gh.req('');
+    if (r.permissions && !r.permissions.push) throw new Error("Cette clé peut lire le dépôt mais pas enregistrer. Donnez-lui Contents : Read and write.");
+    store.set(REPO_KEY, repo);
+    store.remove(DRAFT_KEY);
+    await start();
+    toast('Connectée. Bienvenue dans votre cuisine !');
+    return '';
+  } catch (err) {
+    repo = null;
+    return err.status === 401 ? "La clé d'accès GitHub ne fonctionne plus (expirée ou supprimée). Connectez-vous avec une nouvelle clé, puis redéfinissez le mot de passe."
+      : err.status === 404 ? 'Dépôt introuvable avec cette clé. Vérifiez le nom, et que la clé y a accès.' : err.message;
+  }
+}
+
 function guessRepo() {
   const m = location.hostname.match(/^([^.]+)\.github\.io$/);
   if (!m) return { owner: '', repo: '' };
   return { owner: m[1], repo: location.pathname.split('/').filter(Boolean)[0] || `${m[1]}.github.io` };
 }
-function connectScreen(msg = '') {
+
+const errBox = (msg) => (msg ? `<div class="errbox" role="alert" style="background:var(--piman-tint);color:var(--piman-deep);padding:12px 14px;border-radius:12px;font-weight:600">${esc(msg)}</div>` : '');
+
+async function connectScreen(msg = '', mode) {
   closeSheet(true);
+  const box = mode === 'token' ? null : await loadKeyBox();
+  if (box) return passwordScreen(box, msg);
+  tokenScreen(msg);
+}
+
+function passwordScreen(box, msg = '') {
+  root.innerHTML = `<div class="connect"><form class="box" novalidate>
+    <img class="hero-mark" src="assets/img/mark.svg" alt="">
+    <h1>Cuisine</h1>
+    <p class="lead">Entrez le mot de passe de la cuisine pour modifier le menu, les dates et les annonces.</p>
+    ${errBox(msg)}
+    <label class="field"><span>Mot de passe</span><input class="input" id="kpass" name="password" type="password" autocomplete="current-password" required></label>
+    <button class="btn btn-primary btn-block" type="submit">Se connecter</button>
+    <button class="btn btn-ghost btn-block" type="button" data-demo>Découvrir d'abord (mode démo)</button>
+    <button class="textlink" type="button" data-token style="background:none;border:0;color:var(--kafe-3);font-size:14px;text-decoration:underline">Se connecter avec une clé GitHub</button>
+  </form></div>`;
+  const form = $('form', root);
+  form.password.focus();
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const pw = form.password.value;
+    if (!pw) return;
+    const btn = $('[type=submit]', form); btn.disabled = true; btn.textContent = 'Vérification…';
+    let candidate;
+    try { candidate = await openRepo(pw, box); }
+    catch { return passwordScreen(box, 'Mot de passe incorrect.'); }
+    const err = await signIn(candidate);
+    if (err) passwordScreen(box, err);
+  });
+  $('[data-demo]', root).onclick = async () => { repo = { demo: true }; store.set(REPO_KEY, repo); await start(); };
+  $('[data-token]', root).onclick = () => tokenScreen();
+}
+
+function tokenScreen(msg = '') {
   const g = repo && !repo.demo ? repo : { ...guessRepo(), branch: 'main' };
   root.innerHTML = `<div class="connect"><form class="box" novalidate>
     <img class="hero-mark" src="assets/img/mark.svg" alt="">
     <h1>Cuisine</h1>
-    <p class="lead">Connectez-vous pour modifier votre menu, vos dates et vos annonces. Une seule fois par téléphone.</p>
-    ${msg ? `<div class="errbox" style="background:var(--piman-tint);color:var(--piman-deep);padding:12px 14px;border-radius:12px;font-weight:600">${esc(msg)}</div>` : ''}
-    <label class="field"><span>Dépôt GitHub</span><input class="input" name="full" value="${esc(g.owner && g.repo ? `${g.owner}/${g.repo}` : '')}" placeholder="utilisateur/restaurant" autocapitalize="off" autocorrect="off" spellcheck="false"></label>
-    <label class="field"><span>Branche</span><input class="input" name="branch" value="${esc(g.branch || 'main')}" autocapitalize="off"></label>
+    <p class="lead">Première connexion : collez la clé d'accès GitHub. Ensuite, vous pourrez choisir un mot de passe simple dans Réglages.</p>
+    ${errBox(msg)}
     <label class="field"><span>Clé d'accès (jeton GitHub)</span><input class="input" name="token" type="password" autocomplete="off" placeholder="github_pat_…" value=""></label>
+    <details><summary>Dépôt et branche</summary><div style="display:grid;gap:12px;margin-top:12px">
+      <label class="field"><span>Dépôt GitHub</span><input class="input" name="full" value="${esc(g.owner && g.repo ? `${g.owner}/${g.repo}` : '')}" placeholder="utilisateur/restaurant" autocapitalize="off" autocorrect="off" spellcheck="false"></label>
+      <label class="field"><span>Branche</span><input class="input" name="branch" value="${esc(g.branch || 'main')}" autocapitalize="off"></label>
+    </div></details>
     <details><summary>Comment obtenir une clé d'accès ?</summary><ol>
       <li>Sur GitHub, ouvrez <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens</b>.</li>
       <li>Appuyez sur <b>Generate new token</b>. Nommez-le « Cuisine » et choisissez une longue durée de validité.</li>
@@ -579,22 +666,46 @@ function connectScreen(msg = '') {
     e.preventDefault();
     const [owner, name] = form.full.value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '').split('/');
     const candidate = { owner, repo: name, branch: form.branch.value.trim() || 'main', token: form.token.value.trim() };
-    if (!owner || !name || !candidate.token) return connectScreen('Remplissez le dépôt et la clé d\'accès.');
+    if (!candidate.token) return tokenScreen("Collez la clé d'accès.");
+    if (!owner || !name) return tokenScreen('Indiquez le dépôt (dans « Dépôt et branche »).');
     const btn = $('[type=submit]', form); btn.disabled = true; btn.textContent = 'Vérification…';
-    repo = candidate;
-    try {
-      const r = await gh.req('');
-      if (r.permissions && !r.permissions.push) throw new Error("Cette clé peut lire le dépôt mais pas enregistrer. Donnez-lui Contents : Read and write.");
-      store.set(REPO_KEY, repo);
-      store.remove(DRAFT_KEY);
-      await start();
-      toast('Connectée. Bienvenue dans votre cuisine !');
-    } catch (err) {
-      repo = null;
-      connectScreen(err.status === 401 ? "Cette clé d'accès ne fonctionne pas. Vérifiez-la et réessayez." : err.status === 404 ? "Dépôt introuvable avec cette clé. Vérifiez le nom, et que la clé y a accès." : err.message);
-    }
+    const err = await signIn(candidate);
+    if (err) tokenScreen(err);
   });
   $('[data-demo]', root).onclick = async () => { repo = { demo: true }; store.set(REPO_KEY, repo); await start(); };
+}
+
+/* Settings → set the kitchen password (stores the key encrypted in the repo). */
+async function passwordEditor() {
+  if (!connected()) return toast('Connectez-vous d\'abord avec la clé GitHub', 'info');
+  const exists = !!(await loadKeyBox());
+  const el = openSheet(`<div class="ed">
+    <div class="ed-head"><button class="icon-btn" data-x aria-label="Fermer">${icon('x')}</button><h2>Mot de passe</h2><span style="width:40px"></span></div>
+    <form class="ed-body" novalidate>
+      <p class="muted">${exists ? 'Changez le mot de passe de la cuisine.' : 'Choisissez un mot de passe : sur un autre téléphone, il suffira de le taper pour se connecter.'} Il protège la clé GitHub, alors choisissez-en un long : 3 ou 4 mots, par exemple « griot pikliz soleil Bezons ».</p>
+      <label class="field"><span>Nouveau mot de passe</span><input class="input" id="pw1" name="pw1" type="password" autocomplete="new-password"></label>
+      <label class="field"><span>Confirmer</span><input class="input" id="pw2" name="pw2" type="password" autocomplete="new-password"></label>
+      <p class="err" id="pw-err" hidden></p>
+    </form>
+    <div class="ed-foot"><button class="btn btn-ghost" data-x>Annuler</button><button class="btn btn-primary" data-save>Enregistrer</button></div></div>`, 'full');
+  el.addEventListener('click', async (e) => {
+    const t = e.target.closest('button'); if (!t) return;
+    if (t.hasAttribute('data-x')) return closeSheet();
+    if (!t.hasAttribute('data-save')) return;
+    const f = $('form', el).elements, err = $('#pw-err', el);
+    const fail = (m) => { err.textContent = m; err.hidden = false; };
+    if (f.pw1.value.length < 10) return fail('Au moins 10 caractères, s\'il vous plaît.');
+    if (f.pw1.value !== f.pw2.value) return fail('Les deux mots de passe ne sont pas identiques.');
+    t.disabled = true; t.textContent = 'Enregistrement…';
+    try {
+      const sealed = await sealRepo(f.pw1.value, repo);
+      let sha;
+      try { sha = (await gh.req(`/contents/${KEY_FILE}?ref=${encodeURIComponent(repo.branch)}`)).sha; } catch (e2) { if (e2.status !== 404) throw e2; }
+      await gh.putFile(KEY_FILE, b64encode(JSON.stringify(sealed, null, 2) + '\n'), 'Mise à jour du mot de passe de la cuisine', sha);
+      closeSheet(); renderTab();
+      toast('Mot de passe enregistré (actif dans une minute)');
+    } catch (e2) { t.disabled = false; t.textContent = 'Enregistrer'; fail(`Échec : ${e2.message}`); }
+  });
 }
 
 /* ======================= events ======================= */
@@ -616,6 +727,7 @@ document.addEventListener('click', (e) => {
     case 'publish': return publish();
     case 'export': return exportJSON();
     case 'connect': return connectScreen();
+    case 'password': return passwordEditor();
     case 'add-ful': S().ordering.fulfillment.push({ id: uid('f'), label: 'Nouvelle option', note: '', fee: 0, needsAddress: false }); save(); renderTab(); return;
     case 'clear-past': {
       const s = S(); const past = new Set(s.dates.filter((d) => dateStatus(d) === 'past').map((d) => d.id));
