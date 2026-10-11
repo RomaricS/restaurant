@@ -4,13 +4,13 @@ export const DRAFT_KEY = 'shashou.draft.v1';
 export const REPO_KEY = 'shashou.repo.v1';
 
 export const TAGS = {
-  popular: { label: 'Popular', icon: 'star' },
-  new: { label: 'New', icon: 'sparkle' },
-  spicy: { label: 'Spicy', icon: 'flame' },
-  vegetarian: { label: 'Vegetarian', icon: 'leaf' },
-  vegan: { label: 'Vegan', icon: 'leaf' },
-  'gluten-free': { label: 'Gluten-free', icon: 'check' },
-  nuts: { label: 'Contains nuts', icon: 'info' },
+  popular: { label: 'Populaire', icon: 'star' },
+  new: { label: 'Nouveau', icon: 'sparkle' },
+  spicy: { label: 'Épicé', icon: 'flame' },
+  vegetarian: { label: 'Végétarien', icon: 'leaf' },
+  vegan: { label: 'Végane', icon: 'leaf' },
+  'gluten-free': { label: 'Sans gluten', icon: 'check' },
+  nuts: { label: 'Contient des noix', icon: 'info' },
 };
 
 /* ---------- storage (never throws) ---------- */
@@ -27,14 +27,20 @@ export const store = {
 /* ---------- data ---------- */
 export async function loadPublishedSite() {
   const res = await fetch(`data/site.json?t=${Date.now()}`, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Could not load menu (${res.status})`);
+  if (!res.ok) throw new Error(`Impossible de charger le menu (${res.status})`);
   return normalize(await res.json());
 }
 
+/* Default language for dates and prices; the site can override it with brand.locale. */
+export let LOCALE = 'fr-FR';
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
 export function normalize(site) {
-  site.brand ??= {}; site.about ??= {}; site.contact ??= {}; site.ordering ??= {};
+  site.brand ??= {};
+  site.brand.locale ||= 'fr-FR';
+  LOCALE = site.brand.locale; site.about ??= {}; site.contact ??= {}; site.ordering ??= {};
   site.announcements ??= []; site.dates ??= []; site.categories ??= []; site.dishes ??= [];
-  site.ordering.fulfillment ??= [{ id: 'pickup', label: 'Pickup', note: '', fee: 0, needsAddress: false }];
+  site.ordering.fulfillment ??= [{ id: 'pickup', label: 'À emporter', note: '', fee: 0, needsAddress: false }];
   site.ordering.sendVia ??= 'both';
   for (const d of site.dishes) { d.tags ??= []; d.dates ??= []; }
   for (const d of site.dishes) if (d.category && !site.categories.includes(d.category)) site.categories.push(d.category);
@@ -43,10 +49,10 @@ export function normalize(site) {
 
 /* ---------- formatting ---------- */
 export function money(n, site) {
-  const { currency = 'USD', locale = 'en-US' } = site.brand || {};
+  const { currency = 'EUR', locale = LOCALE } = site.brand || {};
   try {
     const whole = Number.isInteger(+n);
-    return new Intl.NumberFormat(locale, { style: 'currency', currency, minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2 }).format(+n || 0);
+    return new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'narrowSymbol', minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2 }).format(+n || 0);
   } catch { return `$${(+n || 0).toFixed(2)}`; }
 }
 
@@ -66,13 +72,13 @@ export function fmtDay(iso, style = 'long', locale) {
   const opts = style === 'short' ? { weekday: 'short', month: 'short', day: 'numeric' }
     : style === 'chip' ? { weekday: 'short', day: 'numeric' }
     : { weekday: 'long', month: 'long', day: 'numeric' };
-  return d.toLocaleDateString(locale || 'en-US', opts);
+  return cap(d.toLocaleDateString(locale || LOCALE, opts)).replace(/\.$/, '');
 }
 export function fmtCutoff(cutoff, locale) {
   if (!cutoff) return '';
   const d = new Date(cutoff);
   if (isNaN(d)) return '';
-  return d.toLocaleString(locale || 'en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  return cap(d.toLocaleString(locale || LOCALE, { weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }));
 }
 export function timeLeft(cutoff, now = new Date()) {
   if (!cutoff) return '';
@@ -80,8 +86,8 @@ export function timeLeft(cutoff, now = new Date()) {
   if (ms <= 0) return '';
   const h = Math.floor(ms / 36e5);
   if (h < 1) return `${Math.max(1, Math.round(ms / 6e4))} min`;
-  if (h < 48) return `${h} hour${h === 1 ? '' : 's'}`;
-  return `${Math.floor(h / 24)} days`;
+  if (h < 48) return `${h} h`;
+  return `${Math.floor(h / 24)} jours`;
 }
 
 /** Dates that haven't happened yet, sorted. */
@@ -134,22 +140,22 @@ export function orderMessage(site, o) {
   const f = site.ordering.fulfillment.find((x) => x.id === o.fulfillmentId);
   const t = orderTotals(site, o.lines, o.fulfillmentId);
   const out = [];
-  out.push(`Hi ${site.brand.name || ''}! I'd like to place an order 🙏`);
+  out.push(`Bonjour ${site.brand.name || ''} ! Je voudrais passer une commande 🙏`);
   out.push('');
-  out.push(`Order ${o.code}`);
+  out.push(`Commande ${o.code}`);
   if (date) out.push(`📅 ${fmtDay(date.date, 'long', site.brand.locale)}${date.window ? `, ${date.window}` : ''}`);
-  if (f) out.push(`📍 ${f.label}${f.needsAddress && o.address ? `: ${o.address}` : ''}`);
+  if (f) out.push(`📍 ${f.label}${f.needsAddress && o.address ? ` : ${o.address}` : ''}`);
   out.push('');
   for (const l of o.lines) {
-    out.push(`• ${l.qty} × ${l.dish.name}${l.dish.unit ? ` (${l.dish.unit})` : ''}: ${money(l.qty * l.dish.price, site)}`);
+    out.push(`• ${l.qty} × ${l.dish.name}${l.dish.unit ? ` (${l.dish.unit})` : ''} : ${money(l.qty * l.dish.price, site)}`);
     if (l.note) out.push(`   ↳ ${l.note}`);
   }
   out.push('');
-  if (t.fee) out.push(`Subtotal: ${money(t.subtotal, site)}`, `${f.label}: ${money(t.fee, site)}`);
-  out.push(`Total: ${money(t.total, site)}`);
+  if (t.fee) out.push(`Sous-total : ${money(t.subtotal, site)}`, `${f.label} : ${money(t.fee, site)}`);
+  out.push(`Total : ${money(t.total, site)}`);
   out.push('');
-  out.push(`Name: ${o.name}`);
-  if (o.note) out.push(`Note: ${o.note}`);
+  out.push(`Nom : ${o.name}`);
+  if (o.note) out.push(`Note : ${o.note}`);
   return out.join('\n');
 }
 

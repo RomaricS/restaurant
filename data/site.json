@@ -1,21 +1,21 @@
 {
   "brand": {
     "name": "Chez Shashou",
-    "tagline": "Haitian home cooking by Vasthie",
-    "headline": "Manje lakay, made with love.",
-    "intro": "Weekend plates from Vasthie's kitchen: griot, diri djon djon, pikliz and more. Order ahead, then pick up hot and ready.",
-    "currency": "USD",
-    "locale": "en-US"
+    "tagline": "Cuisine haïtienne maison par Vasthie",
+    "headline": "Manje lakay, fait avec amour.",
+    "intro": "Les assiettes du week-end de la cuisine de Vasthie : griot, diri djon djon, pikliz et bien plus. Commandez à l'avance, puis venez chercher votre plat tout chaud.",
+    "currency": "EUR",
+    "locale": "fr-FR"
   },
   "about": {
-    "title": "Bonjou, I'm Vasthie",
-    "text": "Most people call me Shashou. I grew up in Haiti watching my mother and grandmother cook. In our house the kitchen was where everyone gathered, and Sunday meant a full table.\n\nI cook the same way today, in small batches with fresh epis, and only on the weekends I announce here. Every plate is made to order, so please order early. When it's gone, it's gone!",
+    "title": "Bonjou, moi c'est Vasthie",
+    "text": "La plupart des gens m'appellent Shashou. J'ai grandi en Haïti en regardant ma mère et ma grand-mère cuisiner. Chez nous, la cuisine était le cœur de la maison, et le dimanche, la table était toujours pleine.\n\nJe cuisine encore comme ça aujourd'hui : en petites quantités, avec de l'épis frais, et seulement les week-ends annoncés ici. Chaque assiette est préparée sur commande, alors commandez tôt. Quand il n'y en a plus, il n'y en a plus !",
     "photo": "images/dishes/about-spread.jpg",
-    "area": "Pickup in the neighborhood. You'll get the exact address when your order is confirmed."
+    "area": "Retrait dans le quartier. L'adresse exacte vous est envoyée à la confirmation de la commande."
   },
   "contact": {
-    "whatsapp": "+15555550123",
-    "phone": "+15555550123",
+    "whatsapp": "+33600000000",
+    "phone": "+33600000000",
     "email": "",
     "instagram": "chezshashou",
     "facebook": "",
@@ -24,20 +24,20 @@
   "ordering": {
     "sendVia": "both",
     "minOrder": 0,
-    "paymentNote": "Pay when you pick up: cash, Zelle or Cash App.",
-    "confirmNote": "Your order is confirmed only after Vasthie replies to your message.",
+    "paymentNote": "Paiement au retrait : espèces, virement ou Wero.",
+    "confirmNote": "Votre commande est confirmée seulement quand Vasthie répond à votre message.",
     "fulfillment": [
       {
         "id": "pickup",
-        "label": "Pickup",
-        "note": "Address shared when your order is confirmed",
+        "label": "À emporter",
+        "note": "Adresse envoyée à la confirmation de la commande",
         "fee": 0,
         "needsAddress": false
       },
       {
         "id": "delivery",
-        "label": "Local delivery",
-        "note": "Within 5 miles of the kitchen",
+        "label": "Livraison locale",
+        "note": "Dans un rayon de 8 km",
         "fee": 5,
         "needsAddress": true
       }
@@ -46,8 +46,8 @@
   "announcements": [
     {
       "id": "a1",
-      "title": "Soup joumou is back",
-      "text": "Sunday only, and there are just 20 quarts. Reserve yours early!",
+      "title": "La soupe joumou est de retour",
+      "text": "Dimanche seulement, et il n'y a que 20 litres. Réservez la vôtre vite !",
       "tone": "highlight",
       "until": "2026-10-19",
       "active": true
@@ -58,7 +58,7 @@
       "id": "d1",
       "date": "2026-10-17",
       "label": "",
-      "window": "12:00 – 5:00 pm",
+      "window": "12 h – 17 h",
       "cutoff": "2026-10-15T20:00",
       "paused": false,
       "note": ""
@@ -66,8 +66,8 @@
     {
       "id": "d2",
       "date": "2026-10-18",
-      "label": "Soup joumou Sunday",
-      "window": "11:00 am – 3:00 pm",
+      "label": "Dimanche soupe joumou",
+      "window": "11 h – 15 h",
       "cutoff": "2026-10-16T20:00",
       "paused": false,
       "note": ""
@@ -76,7 +76,7 @@
       "id": "d3",
       "date": "2026-10-24",
       "label": "",
-      "window": "12:00 – 5:00 pm",
+      "window": "12 h – 17 h",
       "cutoff": "2026-10-22T20:00",
       "paused": false,
       "note": ""
@@ -85,27 +85,27 @@
       "id": "d4",
       "date": "2026-10-31",
       "label": "",
-      "window": "12:00 – 5:00 pm",
+      "window": "12 h – 17 h",
       "cutoff": "2026-10-29T20:00",
       "paused": false,
       "note": ""
     }
   ],
   "categories": [
-    "Plates",
-    "Soups",
-    "Sides & snacks",
-    "Sweets & drinks"
+    "Assiettes",
+    "Soupes",
+    "Accompagnements",
+    "Desserts et boissons"
   ],
   "dishes": [
     {
       "id": "griot",
       "name": "Griot",
-      "subtitle": "Crispy fried pork",
-      "category": "Plates",
+      "subtitle": "Porc frit croustillant",
+      "category": "Assiettes",
       "price": 18,
-      "unit": "plate",
-      "description": "Pork shoulder marinated overnight in epis and sour orange, simmered until tender, then fried until crispy. Served with bannann peze, pikliz and sauce ti malice.",
+      "unit": "assiette",
+      "description": "Épaule de porc marinée toute la nuit dans l'épis et l'orange amère, mijotée jusqu'à ce qu'elle soit tendre, puis frite jusqu'à être croustillante. Servie avec bannann peze, pikliz et sauce ti malice.",
       "photo": "images/dishes/griot.jpg",
       "tags": [
         "popular",
@@ -119,11 +119,11 @@
     {
       "id": "plat-konple",
       "name": "Plat konplè",
-      "subtitle": "The full plate",
-      "category": "Plates",
+      "subtitle": "L'assiette complète",
+      "category": "Assiettes",
       "price": 20,
-      "unit": "plate",
-      "description": "A bit of everything: tasso (fried beef), diri kole ak pwa, a fresh salad and pikliz. Made for a big appetite.",
+      "unit": "assiette",
+      "description": "Un peu de tout : tasso (bœuf frit), diri kole ak pwa, une salade fraîche et du pikliz. Pour les gros appétits.",
       "photo": "images/dishes/plat-konple.jpg",
       "tags": [
         "popular"
@@ -136,11 +136,11 @@
     {
       "id": "diri-legim",
       "name": "Diri ak legim",
-      "subtitle": "Rice & vegetable stew",
-      "category": "Plates",
+      "subtitle": "Riz et ragoût de légumes",
+      "category": "Assiettes",
       "price": 16,
-      "unit": "plate",
-      "description": "Slow-cooked legim of eggplant, cabbage, chayote and spinach over diri kole ak pwa, with bannann peze on the side.",
+      "unit": "assiette",
+      "description": "Legim mijoté d'aubergine, chou, christophine et épinards, servi sur du diri kole ak pwa, avec des bannann peze.",
       "photo": "images/dishes/diri-legim.jpg",
       "tags": [
         "vegetarian"
@@ -153,11 +153,11 @@
     {
       "id": "espageti",
       "name": "Espageti ayisyen",
-      "subtitle": "Haitian breakfast spaghetti",
-      "category": "Plates",
+      "subtitle": "Spaghetti du petit-déjeuner haïtien",
+      "category": "Assiettes",
       "price": 12,
-      "unit": "bowl",
-      "description": "Spaghetti tossed with sliced hot dogs, peppers, onions and a tomato-epis sauce, the way it's made back home.",
+      "unit": "bol",
+      "description": "Spaghetti sautés avec saucisses, poivrons, oignons et une sauce tomate à l'épis, comme au pays.",
       "photo": "images/dishes/espageti.jpg",
       "tags": [],
       "featured": false,
@@ -168,11 +168,11 @@
     {
       "id": "soup-joumou",
       "name": "Soup joumou",
-      "subtitle": "Independence squash soup",
-      "category": "Soups",
+      "subtitle": "Soupe de l'Indépendance",
+      "category": "Soupes",
       "price": 22,
-      "unit": "quart",
-      "description": "Our freedom soup: kabocha squash, beef, pasta, potatoes, carrots and cabbage. Rich and warming. Available Sundays only.",
+      "unit": "litre",
+      "description": "Notre soupe de la liberté : giraumon, bœuf, pâtes, pommes de terre, carottes et chou. Riche et réconfortante. Disponible le dimanche seulement.",
       "photo": "images/dishes/soup-joumou.jpg",
       "tags": [
         "new"
@@ -187,11 +187,11 @@
     {
       "id": "bannann-peze",
       "name": "Bannann peze",
-      "subtitle": "Twice-fried green plantains",
-      "category": "Sides & snacks",
+      "subtitle": "Bananes plantain frites deux fois",
+      "category": "Accompagnements",
       "price": 7,
-      "unit": "6 pieces",
-      "description": "Green plantains, fried, smashed, then fried again until golden. Perfect with pikliz.",
+      "unit": "6 pièces",
+      "description": "Bananes plantain vertes, frites, aplaties, puis refrites jusqu'à être dorées. Parfaites avec du pikliz.",
       "photo": "images/dishes/bannann-peze.jpg",
       "tags": [
         "vegan"
@@ -204,11 +204,11 @@
     {
       "id": "pikliz",
       "name": "Pikliz",
-      "subtitle": "Spicy pickled slaw",
-      "category": "Sides & snacks",
+      "subtitle": "Condiment de chou pimenté",
+      "category": "Accompagnements",
       "price": 10,
-      "unit": "16 oz jar",
-      "description": "Cabbage, carrots and onions pickled with scotch bonnet peppers in vinegar. It's hot, it keeps for weeks in the fridge, and it goes with everything.",
+      "unit": "pot de 500 ml",
+      "description": "Chou, carottes et oignons marinés au vinaigre avec du piment bouc. Ça pique, ça se garde des semaines au frigo, et ça va avec tout.",
       "photo": "images/dishes/pikliz.jpg",
       "tags": [
         "spicy",
@@ -222,11 +222,11 @@
     {
       "id": "pate-kode",
       "name": "Pate kòde",
-      "subtitle": "Fried patties",
-      "category": "Sides & snacks",
+      "subtitle": "Pâtés frits",
+      "category": "Accompagnements",
       "price": 4,
-      "unit": "each",
-      "description": "Flaky fried dough filled with seasoned beef or smoked herring. Tell us which filling you want in your order note.",
+      "unit": "pièce",
+      "description": "Pâte feuilletée frite garnie de bœuf assaisonné ou de hareng saur. Indiquez la garniture voulue dans la note de commande.",
       "photo": "",
       "tags": [],
       "featured": false,
@@ -237,11 +237,11 @@
     {
       "id": "akra",
       "name": "Akra",
-      "subtitle": "Malanga fritters",
-      "category": "Sides & snacks",
+      "subtitle": "Beignets de malanga",
+      "category": "Accompagnements",
       "price": 9,
-      "unit": "dozen",
-      "description": "Crispy fritters of grated malanga, herbs and scotch bonnet. Best eaten hot.",
+      "unit": "douzaine",
+      "description": "Beignets croustillants de malanga râpé, herbes et piment bouc. Meilleurs bien chauds.",
       "photo": "",
       "tags": [
         "vegan"
@@ -254,11 +254,11 @@
     {
       "id": "pen-patat",
       "name": "Pen patat",
-      "subtitle": "Sweet potato pudding",
-      "category": "Sweets & drinks",
+      "subtitle": "Pudding de patate douce",
+      "category": "Desserts et boissons",
       "price": 8,
-      "unit": "slice",
-      "description": "Baked sweet potato pudding with coconut milk, banana, ginger, cinnamon and a hint of vanilla.",
+      "unit": "part",
+      "description": "Pudding de patate douce au four, avec lait de coco, banane, gingembre, cannelle et une touche de vanille.",
       "photo": "images/dishes/pen-patat.jpg",
       "tags": [
         "vegetarian"
@@ -271,11 +271,11 @@
     {
       "id": "ji-grenadya",
       "name": "Ji grenadya",
-      "subtitle": "Fresh passion fruit juice",
-      "category": "Sweets & drinks",
+      "subtitle": "Jus de fruit de la passion frais",
+      "category": "Desserts et boissons",
       "price": 6,
-      "unit": "16 oz",
-      "description": "Freshly made passion fruit juice, lightly sweetened. Ask for it extra cold.",
+      "unit": "50 cl",
+      "description": "Jus de fruit de la passion fait maison, légèrement sucré. Demandez-le bien frais.",
       "photo": "",
       "tags": [
         "vegan"

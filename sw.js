@@ -1,6 +1,6 @@
 // Network-first service worker: always tries for the freshest menu, and
 // falls back to the last copy it saw when the phone is offline.
-const CACHE = 'shashou-v1';
+const CACHE = 'shashou-v2';
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));

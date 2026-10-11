@@ -1,5 +1,7 @@
 # Chez Shashou
 
+The site and the kitchen editor are in French (`brand.locale` in `data/site.json` controls date and price formats).
+
 Haitian home cooking by Vasthie (Shashou): a mobile-first ordering site for weekend cook-ups.
 
 - **Customers** browse the menu, pick a cook-up date, and send their order as a pre-written **WhatsApp or text message**. There are no accounts and no online payments.
