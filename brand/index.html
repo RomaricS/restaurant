@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--CONTENT-START-->
+<title>Chez Shashou Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&display=swap">
+<style>
+/* Layout: one editorial column; flows break out into horizontal phone rails. */
+:root {
+  --piman: #C8361F; --lanme: #1D3B8B; --mango: #F4A72C; --fey: #2E6B4A; --kafe: #2B1B14; --lakou: #FBF3E6;
+  --bg: #FBF3E6; --fg: #2B1B14; --muted: #6B574B; --surface: #FFFCF7; --sunk: #F3E6D0; --line: #E2D1B5; --accent: #C8361F;
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --stripe: linear-gradient(90deg, var(--piman) 0 25%, var(--mango) 25% 50%, var(--fey) 50% 75%, var(--lanme) 75% 100%);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #1C130F; --fg: #F6EAD8; --muted: #C4AE9C; --surface: #2A1D17; --sunk: #241914; --line: #44332A; --accent: #F07A5F; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #1C130F; --fg: #F6EAD8; --muted: #C4AE9C; --surface: #2A1D17; --sunk: #241914; --line: #44332A; --accent: #F07A5F; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+.page { max-width: 1040px; margin: 0 auto; padding-inline: 20px; padding-block: 0 80px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 650; line-height: 1.05; letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 64ch; }
+.eyebrow { font: 700 12px/1.2 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--muted); }
+:focus-visible { outline: 3px solid var(--mango); outline-offset: 2px; }
+
+/* Hero */
+.hero { display: grid; gap: 28px; align-items: center; padding-block: 56px 40px; }
+.hero .sun { width: min(260px, 60vw); aspect-ratio: 1; justify-self: center; }
+.hero .sun img { width: 100%; animation: spin 80s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.hero h1 { font-size: clamp(56px, 14vw, 128px); font-weight: 700; letter-spacing: -.035em; line-height: .9; }
+.hero h1 em { font-style: italic; font-weight: 500; color: var(--accent); display: block; }
+.hero .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-size: 14px; color: var(--muted); }
+.stripe { height: 8px; border-radius: 4px; background: var(--stripe); }
+@media (min-width: 820px) { .hero { grid-template-columns: 1.4fr 1fr; } }
+
+section { padding-top: 72px; display: grid; gap: 24px; }
+.sec-head { display: grid; gap: 10px; }
+.sec-head h2 { font-size: clamp(34px, 6vw, 52px); }
+.sec-head p { color: var(--muted); }
+
+/* Idea */
+.idea { display: grid; gap: 16px; }
+@media (min-width: 760px) { .idea { grid-template-columns: repeat(3, 1fr); } }
+.idea div { padding: 20px; background: var(--surface); border-radius: 18px; display: grid; gap: 6px; align-content: start; }
+.idea b { font: 650 22px/1.15 var(--display); }
+.idea span { color: var(--muted); font-size: 15px; }
+
+.gloss { width: 100%; border-collapse: collapse; font-size: 16px; }
+.gloss td { padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.gloss td:first-child { font: italic 600 21px/1.3 var(--display); width: 38%; padding-right: 16px; }
+.gloss td:last-child { color: var(--muted); }
+
+/* Logo */
+.logos { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.logo-tile { border-radius: 20px; padding: 28px 22px; display: grid; justify-items: center; gap: 14px; text-align: center; min-height: 230px; align-content: center; }
+.logo-tile img { width: 96px; }
+.logo-tile .wm { font: 700 28px/1 var(--display); letter-spacing: -.01em; }
+.logo-tile small { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
+.t-cream { background: #FBF3E6; color: #2B1B14; border: 1px solid #E2D1B5; }
+.t-red { background: #C8361F; color: #FBF3E6; }
+.t-ink { background: #2B1B14; color: #FBF3E6; }
+.lockup { display: flex; align-items: center; gap: 12px; }
+.lockup img { width: 52px; }
+.lockup .wm { text-align: left; }
+.lockup .wm span { display: block; font: 400 13px/1.3 var(--body); opacity: .7; margin-top: 4px; letter-spacing: 0; }
+.rules { display: grid; gap: 10px; padding-left: 20px; margin: 0; color: var(--muted); }
+
+/* Color */
+.swatches { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.sw { border-radius: 18px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); display: grid; }
+.sw .chip { height: 110px; display: flex; align-items: end; padding: 12px; font: 600 13px var(--body); }
+.sw .info { padding: 12px 14px 14px; display: grid; gap: 2px; }
+.sw b { font: 650 20px var(--display); }
+.sw i { font-style: italic; color: var(--muted); font-size: 14px; }
+.sw code { font: 500 13px ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sw span { font-size: 14px; }
+.ratio { display: flex; height: 22px; border-radius: 11px; overflow: hidden; }
+.ratio i { display: block; }
+
+/* Type */
+.type { display: grid; gap: 16px; }
+@media (min-width: 820px) { .type { grid-template-columns: 1.3fr 1fr; } }
+.spec { background: var(--surface); border-radius: 20px; padding: 24px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.spec .big { font: 700 clamp(64px, 12vw, 104px)/1 var(--display); letter-spacing: -.03em; }
+.spec .big em { font-weight: 500; color: var(--accent); }
+.spec .body-big { font: 600 clamp(44px, 9vw, 72px)/1 var(--body); letter-spacing: -.02em; }
+.spec small { color: var(--muted); font-size: 14px; }
+.scale { display: grid; gap: 0; }
+.scale div { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.scale code { font: 500 12px ui-monospace, Menlo, monospace; color: var(--muted); }
+
+/* Components */
+.comp { display: grid; gap: 14px; }
+@media (min-width: 820px) { .comp { grid-template-columns: 1fr 1fr; } }
+.comp > div { background: var(--surface); border-radius: 20px; padding: 22px; display: grid; gap: 14px; align-content: start; }
+.comp h3 { font-size: 20px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 999px; font: 650 15px var(--body); border: 0; }
+.b-red { background: #C8361F; color: #fff; box-shadow: 0 6px 16px rgba(200,54,31,.28); }
+.b-wa { background: #1F8F55; color: #fff; }
+.b-ink { background: #2B1B14; color: #FBF3E6; }
+.b-ghost { background: transparent; color: var(--fg); border: 1.5px solid var(--line); }
+.tag { display: inline-flex; padding: 4px 10px; border-radius: 999px; font: 650 12px var(--body); }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font: 650 13px var(--body); }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.ph { width: 120px; aspect-ratio: 1; border-radius: 16px; display: grid; place-items: center; position: relative; overflow: hidden; }
+.ph img { width: 40%; opacity: .22; }
+.ph span { position: absolute; bottom: 12px; font: italic 600 15px var(--display); }
+.date-tile { display: grid; justify-items: center; width: 66px; padding: 8px 0; border-radius: 12px; line-height: 1.1; }
+.date-tile small { font: 700 11px var(--body); letter-spacing: .08em; }
+.date-tile b { font: 700 22px var(--display); }
+.date-tile i { font: 600 11px var(--body); font-style: normal; }
+
+/* Voice */
+.voice { display: grid; gap: 12px; }
+@media (min-width: 760px) { .voice { grid-template-columns: 1fr 1fr; } }
+.voice div { padding: 18px 20px; border-radius: 18px; display: grid; gap: 8px; align-content: start; }
+.v-yes { background: var(--surface); border: 1.5px solid var(--fey); }
+.v-no { background: var(--sunk); border: 1.5px dashed var(--line); }
+.voice h3 { font: 700 13px var(--body); letter-spacing: .12em; text-transform: uppercase; }
+.v-yes h3 { color: var(--fey); }
+.v-no h3 { color: var(--muted); }
+.voice ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.v-no li { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+
+/* Flows */
+.flow-intro { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; }
+.rail { display: flex; gap: 18px; overflow-x: auto; padding: 6px 2px 18px; scroll-snap-type: x mandatory; }
+.step { flex: none; width: 236px; display: grid; gap: 12px; align-content: start; scroll-snap-align: start; }
+.phone { border-radius: 30px; padding: 7px; background: #2B1B14; box-shadow: 0 18px 40px rgba(43,27,20,.22); }
+.phone img { display: block; width: 100%; border-radius: 24px; aspect-ratio: 520 / 1125; height: auto; }
+.step .n { display: flex; gap: 10px; align-items: baseline; }
+.step .n b { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--piman); color: #fff; display: grid; place-items: center; font: 700 14px var(--display); }
+.step h3 { font-size: 19px; }
+.step p { color: var(--muted); font-size: 15px; line-height: 1.45; }
+.kitchen .step .n b { background: var(--lanme); }
+
+/* Architecture */
+.arch { display: grid; gap: 10px; }
+@media (min-width: 900px) { .arch { grid-template-columns: repeat(4, 1fr); align-items: stretch; } }
+.node { background: var(--surface); border-radius: 18px; padding: 18px; display: grid; gap: 6px; align-content: start; border-top: 6px solid var(--c); position: relative; min-width: 0; }
+.node b { font: 650 20px var(--display); }
+.node span { color: var(--muted); font-size: 15px; }
+.node .cost { font: 700 13px var(--body); color: var(--fey); margin-top: 4px; }
+.arrow { display: none; }
+.costs { width: 100%; border-collapse: collapse; font-size: 16px; }
+.costs td { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.costs td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+.costs tr.total td { border-bottom: 0; font: 700 22px var(--display); padding-top: 16px; }
+.checklist { margin: 0; padding-left: 22px; display: grid; gap: 10px; }
+.checklist b { font-weight: 650; }
+.foot { margin-top: 80px; display: grid; gap: 14px; justify-items: start; color: var(--muted); font-size: 14px; }
+code.k { background: var(--sunk); padding: 1px 7px; border-radius: 6px; font: 500 14px ui-monospace, Menlo, monospace; }
+
+@media (prefers-reduced-motion: reduce) { .hero .sun img { animation: none; } }
+</style>
+
+<div class="page">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Brand book &amp; app flows</p>
+      <h1>Chez<em>Shashou</em></h1>
+      <p class="muted" style="margin-top:18px;font-size:19px">Haitian home cooking by Vasthie. This book covers the visual identity, the voice, and every screen of the ordering app and of the kitchen editor that runs it.</p>
+      <div class="meta"><span>Version 1</span><span>October 2026</span><span>Mobile-first web app</span></div>
+    </div>
+    <div class="sun"><img src="screens/mark.svg" alt="The Chez Shashou mark: a red marmite pot with three wisps of steam inside a mango-yellow sun"></div>
+  </header>
+  <div class="stripe" role="presentation"></div>
+
+  <section id="idea">
+    <div class="sec-head"><p class="eyebrow">The idea</p><h2>A kitchen you can order from on weekends</h2>
+      <p>Vasthie, or Shashou to her friends, cooks Haitian food on the weekends she announces. There's no restaurant and no delivery app, just a pot on the stove and people who want a plate. The site has one job: show what she's cooking this weekend, and turn "I want two griot" into a message on her phone.</p></div>
+    <div class="idea">
+      <div><b>Lakay</b><span>It should feel like walking into someone's home in Port-au-Prince, warm and generous, not like a franchise.</span></div>
+      <div><b>Tap-tap color</b><span>The four-color stripe comes from the hand-painted tap-tap buses. Use it once per screen, as a signature.</span></div>
+      <div><b>Fer découpé</b><span>The sun around the pot nods to the cut-metal art of Croix-des-Bouquets, with its radiating petals and bold silhouette.</span></div>
+    </div>
+  </section>
+
+  <section id="logo">
+    <div class="sec-head"><p class="eyebrow">Logo</p><h2>The sun &amp; the marmite</h2>
+      <p>The mark is a cast-iron marmite with three wisps of steam, set in a red sun with sixteen alternating rays. It works alone as the app icon, and next to the wordmark in Fraunces Bold.</p></div>
+    <div class="logos">
+      <div class="logo-tile t-cream"><div class="lockup"><img src="screens/mark.svg" alt=""><div class="wm">Chez Shashou<span>Haitian home cooking by Vasthie</span></div></div><small>Primary lockup</small></div>
+      <div class="logo-tile t-red"><img src="screens/mark-cream.svg" alt=""><small>One color, on red</small></div>
+      <div class="logo-tile t-ink"><img src="screens/mark.svg" alt=""><div class="wm">Chez Shashou</div><small>On kafe ink</small></div>
+    </div>
+    <ul class="rules">
+      <li>Leave clear space of at least one steam-wisp height around the mark.</li>
+      <li>Don't make it smaller than 24 px on screen or 12 mm in print (stickers, labels on the containers).</li>
+      <li>Never recolor the rays or put the full-color mark on a photo. Use the cream badge, as on the home screen.</li>
+    </ul>
+  </section>
+
+  <section id="color">
+    <div class="sec-head"><p class="eyebrow">Color</p><h2>Six colors, named in Kreyòl</h2>
+      <p>The cream and coffee carry most of the screen. Piman red is for anything that moves money or food: add, order, send. Blue, mango and green carry meaning: information, highlights, and "open / vegetarian".</p></div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#C8361F;color:#fff">Primary</div><div class="info"><b>Piman</b><i>scotch bonnet</i><code>#C8361F</code><span>Buttons, prices, accents</span></div></div>
+      <div class="sw"><div class="chip" style="background:#1D3B8B;color:#fff">Secondary</div><div class="info"><b>Lanmè</b><i>the sea</i><code>#1D3B8B</code><span>Info, preview, date notes</span></div></div>
+      <div class="sw"><div class="chip" style="background:#F4A72C;color:#2B1B14">Accent</div><div class="info"><b>Mango</b><i>the sun</i><code>#F4A72C</code><span>Sun rays, highlights, focus</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2E6B4A;color:#fff">Status</div><div class="info"><b>Fèy</b><i>plantain leaf</i><code>#2E6B4A</code><span>Open, available, veg</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2B1B14;color:#FBF3E6">Ink</div><div class="info"><b>Kafe</b><i>coffee</i><code>#2B1B14</code><span>Text, dark buttons</span></div></div>
+      <div class="sw"><div class="chip" style="background:#FBF3E6;color:#2B1B14;border-bottom:1px solid #E2D1B5">Ground</div><div class="info"><b>Lakou</b><i>the courtyard</i><code>#FBF3E6</code><span>Page background</span></div></div>
+    </div>
+    <div class="ratio" role="img" aria-label="Rough proportion of each color on a screen: mostly cream and ink, a little red, touches of blue, mango and green">
+      <i style="flex:52;background:#FBF3E6;border:1px solid #E2D1B5"></i><i style="flex:22;background:#2B1B14"></i><i style="flex:12;background:#C8361F"></i><i style="flex:6;background:#F4A72C"></i><i style="flex:4;background:#2E6B4A"></i><i style="flex:4;background:#1D3B8B"></i>
+    </div>
+    <p class="muted" style="font-size:14px">Rough share of each color on a typical screen.</p>
+  </section>
+
+  <section id="type">
+    <div class="sec-head"><p class="eyebrow">Typography</p><h2>A soft serif with a kitchen-table voice</h2>
+      <p>Fraunces has round, slightly wonky letterforms that feel handmade, and its italic is used for one phrase per screen at most. DM Sans keeps prices, forms and buttons crisp at small sizes. Both are free on Google Fonts.</p></div>
+    <div class="type">
+      <div class="spec"><small>Display · Fraunces 500–700</small><div class="big">Manje <em>lakay</em></div><small>Dish names, headings, the one italic phrase per screen</small></div>
+      <div class="spec"><small>Text · DM Sans 400–700</small><div class="body-big">$18 / plate</div><small>Prices, labels, buttons, forms</small>
+        <div class="scale">
+          <div><code>Hero 76</code><span style="font:700 30px/1 var(--display)">Griot</span></div>
+          <div><code>Title 28</code><span style="font:650 22px/1 var(--display)">Sides &amp; snacks</span></div>
+          <div><code>Dish 19</code><span style="font:650 18px/1 var(--display)">Bannann peze</span></div>
+          <div><code>Body 16</code><span>Twice-fried green plantains</span></div>
+          <div><code>Label 12</code><span style="font:700 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)">Ordering for</span></div>
+        </div></div>
+    </div>
+  </section>
+
+  <section id="components">
+    <div class="sec-head"><p class="eyebrow">Building blocks</p><h2>Components</h2><p>Big, round touch targets (at least 44 px) because people order with one thumb on a phone.</p></div>
+    <div class="comp">
+      <div><h3>Buttons</h3><div class="row"><span class="btn b-red">Add · $36</span><span class="btn b-wa">Send on WhatsApp</span></div><div class="row"><span class="btn b-ink">Contact</span><span class="btn b-ghost">Send by text</span></div></div>
+      <div><h3>Labels &amp; status</h3>
+        <div class="row"><span class="tag" style="background:#FCE9C6;color:#8A5300">Popular</span><span class="tag" style="background:#F8DDD3;color:#A02716">Spicy</span><span class="tag" style="background:#DCEBDF;color:#2E6B4A">Vegan</span><span class="tag" style="background:#2B1B14;color:#FBF3E6">Sold out</span></div>
+        <div class="row"><span class="pill" style="background:#DCEBDF;color:#2E6B4A">Taking orders</span><span class="pill" style="background:#FCE9C6;color:#8A5300">Paused</span><span class="pill" style="background:#F3E6D0;color:#5E4A3F">Orders closed</span></div></div>
+      <div><h3>Cook-up dates</h3><div class="row">
+        <span class="date-tile" style="background:#2B1B14;color:#FBF3E6"><small style="color:#F4A72C">SAT</small><b>17</b><i style="color:#F4A72C">Oct</i></span>
+        <span class="date-tile" style="background:#FFFCF7;color:#2B1B14;border:1.5px solid #D6C2A3"><small style="color:#8E7A6D">SUN</small><b>18</b><i style="color:#2E6B4A">Oct</i></span>
+        <span class="date-tile" style="background:#FFFCF7;color:#2B1B14;border:1.5px solid #D6C2A3"><small style="color:#8E7A6D">SAT</small><b>24</b><i style="color:#8E7A6D">Closed</i></span></div>
+        <p class="muted" style="font-size:15px">Customers always pick a day first. Every dish can be limited to certain days, like soup joumou on Sundays.</p></div>
+      <div><h3>No photo yet</h3><div class="row">
+        <span class="ph" style="background:#F8DDD3;color:#A02716"><img src="screens/mark-mono.svg" alt=""><span>Akra</span></span>
+        <span class="ph" style="background:#DDE4F5;color:#1D3B8B"><img src="screens/mark-mono.svg" alt=""><span>Pate kòde</span></span></div>
+        <p class="muted" style="font-size:15px">A dish without a photo still looks intentional. Real photos always sell better, so these are a stopgap.</p></div>
+    </div>
+  </section>
+
+  <section id="voice">
+    <div class="sec-head"><p class="eyebrow">Voice</p><h2>Talk like Vasthie at the door</h2>
+      <p>Warm, direct, a little proud. Use English for clarity, with Kreyòl where it adds feeling, never where it would confuse someone ordering.</p></div>
+    <table class="gloss">
+      <tr><td>Manje lakay</td><td>Home food. The headline promise.</td></tr>
+      <tr><td>Bonjou, I'm Vasthie</td><td>The about page greeting.</td></tr>
+      <tr><td>Mèsi anpil!</td><td>Thank you so much. Shown after an order is written.</td></tr>
+      <tr><td>Fèt ak lanmou</td><td>Made with love. Footer sign-off.</td></tr>
+      <tr><td>Bon apeti!</td><td>Enjoy your meal. Use in WhatsApp replies and on labels.</td></tr>
+    </table>
+    <div class="voice">
+      <div class="v-yes"><h3>Say</h3><ul><li>Soup joumou is back. Sunday only, 20 quarts.</li><li>Order by Thursday 8 pm.</li><li>When it's gone, it's gone!</li></ul></div>
+      <div class="v-no"><h3>Avoid</h3><ul><li>Experience authentic Caribbean flavors</li><li>Your order has been successfully submitted</li><li>Limited availability may apply</li></ul></div>
+    </div>
+  </section>
+
+  <section id="customer" class="customer">
+    <div class="sec-head"><p class="eyebrow">Flow 1 · Customers</p><h2>From hungry to ordered in about a minute</h2>
+      <p>No account and no payment form. The app writes the order as a message; the customer sends it on WhatsApp or by text, and Vasthie confirms by replying.</p></div>
+    <div class="rail" tabindex="0" aria-label="Customer screens, scroll sideways">
+      <div class="step"><div class="phone"><img src="screens/c1-home.jpg" alt="Home screen with the headline, a griot photo and the ordering-for date card" loading="lazy"></div><div class="n"><b>1</b><h3>Land on the menu</h3></div><p>Headline, hero dish, and right away: which day you're ordering for, and how long orders stay open.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c2-favorites.jpg" alt="Carousel of favorite dishes with large photos" loading="lazy"></div><div class="n"><b>2</b><h3>See the favorites</h3></div><p>Announcements and this weekend's favorite dishes in large photos, the way a food magazine would show them.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c3-menu.jpg" alt="Menu grid with plates, add buttons and a View order bar" loading="lazy"></div><div class="n"><b>3</b><h3>Add with one tap</h3></div><p>Tap + on any photo. The red bar keeps a running total. Sold-out dishes and dishes for other days are marked on the photo.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c4-dish.jpg" alt="Dish sheet for soup joumou with description, availability note and quantity stepper" loading="lazy"></div><div class="n"><b>4</b><h3>Open a dish</h3></div><p>The full story, labels, which days it's available, a special request, and the quantity.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c5-order.jpg" alt="Order screen with item lines and date options" loading="lazy"></div><div class="n"><b>5</b><h3>Review the order</h3></div><p>Change quantities, then pick the day. A dish not cooked that day gets flagged before sending.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c6-checkout.jpg" alt="Checkout with pickup or delivery, name, total and send buttons" loading="lazy"></div><div class="n"><b>6</b><h3>Pickup or delivery</h3></div><p>Name, an address only for delivery, a note, the total, and how to pay. Then: Send on WhatsApp, or by text.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c7-sent.jpg" alt="Confirmation screen saying Almost done, just hit send, with a receipt" loading="lazy"></div><div class="n"><b>7</b><h3>Hit send</h3></div><p>WhatsApp opens with the whole order already written. The receipt stays here with an order code, a copy button, and a text-message fallback.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c8-about.jpg" alt="About page with Vasthie's story and upcoming dates" loading="lazy"></div><div class="n"><b>8</b><h3>Meet Vasthie</h3></div><p>Her story, every upcoming cook-up, and where pickup happens.</p></div>
+      <div class="step"><div class="phone"><img src="screens/c9-contact.jpg" alt="Contact sheet with WhatsApp, text, call and Instagram rows" loading="lazy"></div><div class="n"><b>9</b><h3>Get in touch</h3></div><p>One button opens WhatsApp, text, call, Instagram or email, using the apps already on the phone.</p></div>
+    </div>
+  </section>
+
+  <section id="kitchen" class="kitchen">
+    <div class="sec-head"><p class="eyebrow">Flow 2 · Vasthie's kitchen</p><h2>Run the whole site from her phone</h2>
+      <p>The editor lives at <code class="k">/admin.html</code>. Every change is a draft until she taps Publish, so she can try things out and preview first.</p></div>
+    <div class="rail" tabindex="0" aria-label="Kitchen editor screens, scroll sideways">
+      <div class="step"><div class="phone"><img src="screens/k1-connect.jpg" alt="Kitchen sign-in screen" loading="lazy"></div><div class="n"><b>1</b><h3>Sign in once</h3></div><p>Paste a GitHub access key one time per phone. Step-by-step help is built in.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k2-menu.jpg" alt="Menu list with availability switches" loading="lazy"></div><div class="n"><b>2</b><h3>Menu at a glance</h3></div><p>Each dish has a switch. Ran out of akra? Flip it to Sold out and publish.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k3-dish.jpg" alt="Edit dish form with photo, name, price" loading="lazy"></div><div class="n"><b>3</b><h3>Edit a dish</h3></div><p>Take a photo right from the camera. It's resized automatically. Then name, price, description.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k4-dish-options.jpg" alt="Dish options: labels, days, sold out, favorite" loading="lazy"></div><div class="n"><b>4</b><h3>Labels &amp; days</h3></div><p>Spicy, vegan, popular. Limit a dish to certain days, feature it, hide it, or cap how many one person can order.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k5-dates.jpg" alt="Cook-up dates list with open switches" loading="lazy"></div><div class="n"><b>5</b><h3>Plan cook-ups</h3></div><p>One tap adds next Saturday or Sunday. Pause orders for a day when she's full.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k6-date-edit.jpg" alt="New date form with pickup hours and order deadline presets" loading="lazy"></div><div class="n"><b>6</b><h3>Set the deadline</h3></div><p>Pickup hours and the last moment to order, with presets. After the deadline, orders close by themselves.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k7-news.jpg" alt="New announcement form with style choices" loading="lazy"></div><div class="n"><b>7</b><h3>Announce</h3></div><p>Short posts at the top of the menu, styled as highlight, info or urgent, with an optional end date.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k8-settings.jpg" alt="Settings with contact numbers" loading="lazy"></div><div class="n"><b>8</b><h3>Settings</h3></div><p>WhatsApp number, socials, payment note, pickup and delivery options and fees, her story and photo, plus backups.</p></div>
+      <div class="step"><div class="phone"><img src="screens/k9-published.jpg" alt="Published confirmation sheet" loading="lazy"></div><div class="n"><b>9</b><h3>Publish</h3></div><p>One tap. The live site updates in about a minute.</p></div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head"><p class="eyebrow">How it runs</p><h2>No server, no monthly bill</h2>
+      <p>The site is a set of plain files on GitHub Pages, which hosts it for free. The menu is one file, <code class="k">data/site.json</code>. The kitchen editor rewrites that file through GitHub, and orders travel as ordinary messages.</p></div>
+    <div class="arch">
+      <div class="node" style="--c:#1D3B8B"><b>Kitchen editor</b><span>Vasthie edits the menu, dates and news on her phone, then publishes.</span></div>
+      <div class="node" style="--c:#2B1B14"><b>GitHub repository</b><span>Stores <code class="k">site.json</code> and the photos. Every publish is saved, so any version can be restored.</span><span class="cost">Free</span></div>
+      <div class="node" style="--c:#F4A72C"><b>GitHub Pages</b><span>Serves the site over HTTPS. It can be added to the home screen like an app.</span><span class="cost">Free</span></div>
+      <div class="node" style="--c:#2E6B4A"><b>WhatsApp / SMS</b><span>Orders arrive as messages in her usual inbox. She confirms and arranges payment there.</span><span class="cost">Free</span></div>
+    </div>
+    <table class="costs">
+      <tr><td>Hosting (GitHub Pages)</td><td>$0</td></tr>
+      <tr><td>Database, server, order processing</td><td>$0</td></tr>
+      <tr><td>Custom domain, e.g. chezshashou.com <span class="muted">(optional)</span></td><td>~$12 / year</td></tr>
+      <tr class="total"><td>Total to run</td><td>$0</td></tr>
+    </table>
+  </section>
+
+  <section id="launch">
+    <div class="sec-head"><p class="eyebrow">Before launch</p><h2>Checklist</h2></div>
+    <ol class="checklist">
+      <li><b>Turn on GitHub Pages</b> for the repository: Settings → Pages → deploy from the <code class="k">main</code> branch, root folder.</li>
+      <li><b>Create Vasthie's access key</b> (fine-grained token, this repository only, Contents: read and write) and sign in at <code class="k">/admin.html</code> on her phone.</li>
+      <li><b>Put in her real WhatsApp number</b>, Instagram and payment methods under Settings.</li>
+      <li><b>Replace the sample photos</b> with her own. Daylight by a window, shot from above, works best.</li>
+      <li><b>Set real prices and dates</b>, then publish and place a test order to her own phone.</li>
+      <li><b>Share the link</b> in her WhatsApp status and Instagram bio. Customers can add it to their home screen.</li>
+    </ol>
+  </section>
+
+  <footer class="foot"><div class="stripe" style="width:120px"></div><span>Chez Shashou · Fèt ak lanmou. Sample dish photos are from Wikimedia Commons (see <code class="k">images/CREDITS.md</code>) until Vasthie's own replace them.</span></footer>
+</div>
+<!--CONTENT-END-->
+</html>

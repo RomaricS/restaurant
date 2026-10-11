@@ -1,0 +1,289 @@
+{
+  "brand": {
+    "name": "Chez Shashou",
+    "tagline": "Haitian home cooking by Vasthie",
+    "headline": "Manje lakay, made with love.",
+    "intro": "Weekend plates from Vasthie's kitchen: griot, diri djon djon, pikliz and more. Order ahead, then pick up hot and ready.",
+    "currency": "USD",
+    "locale": "en-US"
+  },
+  "about": {
+    "title": "Bonjou, I'm Vasthie",
+    "text": "Most people call me Shashou. I grew up in Haiti watching my mother and grandmother cook. In our house the kitchen was where everyone gathered, and Sunday meant a full table.\n\nI cook the same way today, in small batches with fresh epis, and only on the weekends I announce here. Every plate is made to order, so please order early. When it's gone, it's gone!",
+    "photo": "images/dishes/about-spread.jpg",
+    "area": "Pickup in the neighborhood. You'll get the exact address when your order is confirmed."
+  },
+  "contact": {
+    "whatsapp": "+15555550123",
+    "phone": "+15555550123",
+    "email": "",
+    "instagram": "chezshashou",
+    "facebook": "",
+    "tiktok": ""
+  },
+  "ordering": {
+    "sendVia": "both",
+    "minOrder": 0,
+    "paymentNote": "Pay when you pick up: cash, Zelle or Cash App.",
+    "confirmNote": "Your order is confirmed only after Vasthie replies to your message.",
+    "fulfillment": [
+      {
+        "id": "pickup",
+        "label": "Pickup",
+        "note": "Address shared when your order is confirmed",
+        "fee": 0,
+        "needsAddress": false
+      },
+      {
+        "id": "delivery",
+        "label": "Local delivery",
+        "note": "Within 5 miles of the kitchen",
+        "fee": 5,
+        "needsAddress": true
+      }
+    ]
+  },
+  "announcements": [
+    {
+      "id": "a1",
+      "title": "Soup joumou is back",
+      "text": "Sunday only, and there are just 20 quarts. Reserve yours early!",
+      "tone": "highlight",
+      "until": "2026-10-19",
+      "active": true
+    }
+  ],
+  "dates": [
+    {
+      "id": "d1",
+      "date": "2026-10-17",
+      "label": "",
+      "window": "12:00 – 5:00 pm",
+      "cutoff": "2026-10-15T20:00",
+      "paused": false,
+      "note": ""
+    },
+    {
+      "id": "d2",
+      "date": "2026-10-18",
+      "label": "Soup joumou Sunday",
+      "window": "11:00 am – 3:00 pm",
+      "cutoff": "2026-10-16T20:00",
+      "paused": false,
+      "note": ""
+    },
+    {
+      "id": "d3",
+      "date": "2026-10-24",
+      "label": "",
+      "window": "12:00 – 5:00 pm",
+      "cutoff": "2026-10-22T20:00",
+      "paused": false,
+      "note": ""
+    },
+    {
+      "id": "d4",
+      "date": "2026-10-31",
+      "label": "",
+      "window": "12:00 – 5:00 pm",
+      "cutoff": "2026-10-29T20:00",
+      "paused": false,
+      "note": ""
+    }
+  ],
+  "categories": [
+    "Plates",
+    "Soups",
+    "Sides & snacks",
+    "Sweets & drinks"
+  ],
+  "dishes": [
+    {
+      "id": "griot",
+      "name": "Griot",
+      "subtitle": "Crispy fried pork",
+      "category": "Plates",
+      "price": 18,
+      "unit": "plate",
+      "description": "Pork shoulder marinated overnight in epis and sour orange, simmered until tender, then fried until crispy. Served with bannann peze, pikliz and sauce ti malice.",
+      "photo": "images/dishes/griot.jpg",
+      "tags": [
+        "popular",
+        "spicy"
+      ],
+      "featured": true,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "plat-konple",
+      "name": "Plat konplè",
+      "subtitle": "The full plate",
+      "category": "Plates",
+      "price": 20,
+      "unit": "plate",
+      "description": "A bit of everything: tasso (fried beef), diri kole ak pwa, a fresh salad and pikliz. Made for a big appetite.",
+      "photo": "images/dishes/plat-konple.jpg",
+      "tags": [
+        "popular"
+      ],
+      "featured": true,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "diri-legim",
+      "name": "Diri ak legim",
+      "subtitle": "Rice & vegetable stew",
+      "category": "Plates",
+      "price": 16,
+      "unit": "plate",
+      "description": "Slow-cooked legim of eggplant, cabbage, chayote and spinach over diri kole ak pwa, with bannann peze on the side.",
+      "photo": "images/dishes/diri-legim.jpg",
+      "tags": [
+        "vegetarian"
+      ],
+      "featured": false,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "espageti",
+      "name": "Espageti ayisyen",
+      "subtitle": "Haitian breakfast spaghetti",
+      "category": "Plates",
+      "price": 12,
+      "unit": "bowl",
+      "description": "Spaghetti tossed with sliced hot dogs, peppers, onions and a tomato-epis sauce, the way it's made back home.",
+      "photo": "images/dishes/espageti.jpg",
+      "tags": [],
+      "featured": false,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "soup-joumou",
+      "name": "Soup joumou",
+      "subtitle": "Independence squash soup",
+      "category": "Soups",
+      "price": 22,
+      "unit": "quart",
+      "description": "Our freedom soup: kabocha squash, beef, pasta, potatoes, carrots and cabbage. Rich and warming. Available Sundays only.",
+      "photo": "images/dishes/soup-joumou.jpg",
+      "tags": [
+        "new"
+      ],
+      "featured": true,
+      "soldOut": false,
+      "hidden": false,
+      "dates": [
+        "d2"
+      ]
+    },
+    {
+      "id": "bannann-peze",
+      "name": "Bannann peze",
+      "subtitle": "Twice-fried green plantains",
+      "category": "Sides & snacks",
+      "price": 7,
+      "unit": "6 pieces",
+      "description": "Green plantains, fried, smashed, then fried again until golden. Perfect with pikliz.",
+      "photo": "images/dishes/bannann-peze.jpg",
+      "tags": [
+        "vegan"
+      ],
+      "featured": false,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "pikliz",
+      "name": "Pikliz",
+      "subtitle": "Spicy pickled slaw",
+      "category": "Sides & snacks",
+      "price": 10,
+      "unit": "16 oz jar",
+      "description": "Cabbage, carrots and onions pickled with scotch bonnet peppers in vinegar. It's hot, it keeps for weeks in the fridge, and it goes with everything.",
+      "photo": "images/dishes/pikliz.jpg",
+      "tags": [
+        "spicy",
+        "vegan"
+      ],
+      "featured": false,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "pate-kode",
+      "name": "Pate kòde",
+      "subtitle": "Fried patties",
+      "category": "Sides & snacks",
+      "price": 4,
+      "unit": "each",
+      "description": "Flaky fried dough filled with seasoned beef or smoked herring. Tell us which filling you want in your order note.",
+      "photo": "",
+      "tags": [],
+      "featured": false,
+      "soldOut": true,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "akra",
+      "name": "Akra",
+      "subtitle": "Malanga fritters",
+      "category": "Sides & snacks",
+      "price": 9,
+      "unit": "dozen",
+      "description": "Crispy fritters of grated malanga, herbs and scotch bonnet. Best eaten hot.",
+      "photo": "",
+      "tags": [
+        "vegan"
+      ],
+      "featured": false,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "pen-patat",
+      "name": "Pen patat",
+      "subtitle": "Sweet potato pudding",
+      "category": "Sweets & drinks",
+      "price": 8,
+      "unit": "slice",
+      "description": "Baked sweet potato pudding with coconut milk, banana, ginger, cinnamon and a hint of vanilla.",
+      "photo": "images/dishes/pen-patat.jpg",
+      "tags": [
+        "vegetarian"
+      ],
+      "featured": false,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    },
+    {
+      "id": "ji-grenadya",
+      "name": "Ji grenadya",
+      "subtitle": "Fresh passion fruit juice",
+      "category": "Sweets & drinks",
+      "price": 6,
+      "unit": "16 oz",
+      "description": "Freshly made passion fruit juice, lightly sweetened. Ask for it extra cold.",
+      "photo": "",
+      "tags": [
+        "vegan"
+      ],
+      "featured": false,
+      "soldOut": false,
+      "hidden": false,
+      "dates": []
+    }
+  ]
+}
