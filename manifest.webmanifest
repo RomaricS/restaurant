@@ -1,7 +1,7 @@
 {
   "name": "Chez Shashou",
   "short_name": "Shashou",
-  "description": "Haitian home cooking by Vasthie. Order ahead for weekend pickup.",
+  "description": "Cuisine haïtienne maison par Vasthie. Commandez à l'avance pour le week-end.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
