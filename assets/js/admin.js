@@ -21,6 +21,8 @@ const gh = {
     if (!res.ok) {
       let msg = `Erreur GitHub ${res.status}`;
       try { msg = (await res.json()).message || msg; } catch {}
+      // A key that can read but not write gets 403 on every save.
+      if (res.status === 403 && (opts.method || 'GET') !== 'GET') msg = "La clé GitHub n'a pas le droit d'écrire. Sur GitHub, ouvrez la clé (Settings → Developer settings → Fine-grained tokens), et réglez Permissions → Contents sur « Read and write ».";
       const e = new Error(msg); e.status = res.status; throw e;
     }
     return res.status === 204 ? null : res.json();
@@ -535,7 +537,7 @@ async function publish() {
     renderTab();
   } catch (err) {
     el.innerHTML = `<div class="grabber"></div><div class="done"><h2>Publication impossible</h2><p>${esc(err.message)}</p>
-      <p class="hint">${err.status === 401 ? 'Votre clé d\'accès a peut-être expiré. Déconnectez-vous, puis reconnectez-vous avec une nouvelle clé.' : 'Vérifiez votre connexion et réessayez. Vos modifications sont toujours enregistrées sur ce téléphone.'}</p>
+      <p class="hint">${err.status === 403 ? 'Une fois la permission corrigée sur GitHub, réessayez : pas besoin de recoller la clé.' : err.status === 401 ? 'Votre clé d\'accès a peut-être expiré. Déconnectez-vous, puis reconnectez-vous avec une nouvelle clé.' : 'Vérifiez votre connexion et réessayez. Vos modifications sont toujours enregistrées sur ce téléphone.'}</p>
       <button class="btn btn-primary" data-retry>Réessayer</button><button class="btn btn-ghost" data-close>Fermer</button></div>`;
     $('[data-retry]', el).onclick = () => publish();
     $('[data-close]', el).onclick = () => closeSheet();
