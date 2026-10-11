@@ -439,10 +439,10 @@ function settingsTab() {
   <section class="group"><h2>Orders</h2><div class="list" style="padding:16px;display:grid;gap:14px">
     <label class="field"><span>Les clients envoient leur commande par</span><select class="select" data-bind="ordering.sendVia">
       ${[['both', 'WhatsApp ou SMS'], ['whatsapp', 'WhatsApp seulement'], ['sms', 'SMS seulement']].map(([k, l]) => `<option value="${k}" ${o.sendVia === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
-    ${f('ordering.paymentNote', 'Comment les clients paient', { ph: 'Paiement au retrait : espèces ou virement' })}
+    ${f('ordering.paymentNote', 'Comment les clients paient', { ph: 'Paiement au retrait : espèces, virement ou Wero' })}
     ${f('ordering.confirmNote', 'Note sous le bouton d\'envoi', { ph: 'Votre commande est confirmée quand Vasthie répond.' })}
     <div class="row2">${f('ordering.minOrder', 'Commande minimum', { type: 'number', mode: 'decimal', ph: '0' })}
-      <label class="field"><span>Devise</span><select class="select" data-bind="brand.currency">${['USD', 'CAD', 'EUR', 'GBP', 'HTG'].map((c) => `<option ${s.brand.currency === c ? 'selected' : ''}>${c}</option>`).join('')}</select></label></div>
+      <label class="field"><span>Devise</span><select class="select" data-bind="brand.currency">${['EUR', 'USD', 'CAD', 'GBP', 'HTG'].map((c) => `<option ${s.brand.currency === c ? 'selected' : ''}>${c}</option>`).join('')}</select></label></div>
   </div></section>
 
   <section class="group"><h2>Retrait et livraison<button data-act="add-ful">+ Ajouter une option</button></h2><div class="fulf">

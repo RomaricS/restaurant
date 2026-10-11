@@ -49,7 +49,7 @@ export function normalize(site) {
 
 /* ---------- formatting ---------- */
 export function money(n, site) {
-  const { currency = 'USD', locale = LOCALE } = site.brand || {};
+  const { currency = 'EUR', locale = LOCALE } = site.brand || {};
   try {
     const whole = Number.isInteger(+n);
     return new Intl.NumberFormat(locale, { style: 'currency', currency, currencyDisplay: 'narrowSymbol', minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: 2 }).format(+n || 0);

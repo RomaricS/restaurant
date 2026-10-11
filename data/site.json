@@ -4,7 +4,7 @@
     "tagline": "Cuisine haïtienne maison par Vasthie",
     "headline": "Manje lakay, fait avec amour.",
     "intro": "Les assiettes du week-end de la cuisine de Vasthie : griot, diri djon djon, pikliz et bien plus. Commandez à l'avance, puis venez chercher votre plat tout chaud.",
-    "currency": "USD",
+    "currency": "EUR",
     "locale": "fr-FR"
   },
   "about": {
@@ -14,8 +14,8 @@
     "area": "Retrait dans le quartier. L'adresse exacte vous est envoyée à la confirmation de la commande."
   },
   "contact": {
-    "whatsapp": "+15555550123",
-    "phone": "+15555550123",
+    "whatsapp": "+33600000000",
+    "phone": "+33600000000",
     "email": "",
     "instagram": "chezshashou",
     "facebook": "",
@@ -24,7 +24,7 @@
   "ordering": {
     "sendVia": "both",
     "minOrder": 0,
-    "paymentNote": "Paiement au retrait : espèces ou virement.",
+    "paymentNote": "Paiement au retrait : espèces, virement ou Wero.",
     "confirmNote": "Votre commande est confirmée seulement quand Vasthie répond à votre message.",
     "fulfillment": [
       {
